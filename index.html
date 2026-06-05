@@ -18,7 +18,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      background: #000;
       overflow: hidden;
       padding: 20px;
     }
@@ -33,60 +33,47 @@
       color: #fff;
       font-size: 2.2rem;
       margin-bottom: 25px;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 4px 16px rgba(255, 105, 180, 0.4);
     }
 
     .love-button {
-      background: #fff;
-      color: #e84375;
+      background: #ff4f8b;
+      color: #fff;
       border: none;
-      padding: 16px 34px;
+      padding: 16px 38px;
       font-size: 1.1rem;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(232, 67, 117, 0.35);
+      box-shadow: 0 10px 30px rgba(255, 79, 139, 0.45);
       transition: 0.3s ease;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     .love-button:hover {
       transform: scale(1.08);
-      background: #e84375;
-      color: white;
+      background: #fff;
+      color: #ff4f8b;
     }
 
     .card {
       margin-top: 35px;
-      width: 340px;
+      width: 360px;
       max-width: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       border-radius: 24px;
       padding: 30px 25px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 20px 60px rgba(255, 79, 139, 0.35);
       transform: scale(0);
       opacity: 0;
       transition: 0.5s ease;
       position: relative;
+      border: 1px solid rgba(255, 79, 139, 0.35);
     }
 
     .card.show {
       transform: scale(1);
       opacity: 1;
-    }
-
-    .heart {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      animation: beat 1s infinite;
-    }
-
-    @keyframes beat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.18);
-      }
     }
 
     .card h2 {
@@ -126,9 +113,10 @@
 
     .floating-heart {
       position: absolute;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 79, 139, 0.75);
       font-size: 24px;
       animation: floatUp 6s linear infinite;
+      z-index: 1;
     }
 
     @keyframes floatUp {
@@ -152,7 +140,7 @@
 
       .love-button {
         font-size: 1rem;
-        padding: 14px 28px;
+        padding: 14px 30px;
       }
 
       .card {
@@ -168,12 +156,10 @@
     <h1>I made something for you</h1>
 
     <button class="love-button" onclick="openCard()">
-      Touch Me ❤️
+      Rawrrr
     </button>
 
     <div class="card" id="loveCard">
-      <div class="heart">❤️</div>
-
       <h2>My Love</h2>
 
       <p>
@@ -230,3 +216,4 @@
 
 </body>
 </html>
+
