@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .love-button {
+      background: #fff;
+      color: #e84375;
+      border: none;
+      padding: 16px 34px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(232, 67, 117, 0.35);
+      transition: 0.3s ease;
+      font-weight: 600;
+    }
+
+    .love-button:hover {
+      transform: scale(1.08);
+      background: #e84375;
+      color: white;
+    }
+
+    .card {
+      margin-top: 35px;
+      width: 340px;
+      max-width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 30px 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      transform: scale(0);
+      opacity: 0;
+      transition: 0.5s ease;
+      position: relative;
+    }
+
+    .card.show {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .heart {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
+    .card h2 {
+      color: #e84375;
+      margin-bottom: 15px;
+      font-size: 1.7rem;
+    }
+
+    .card p {
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .signature {
+      color: #e84375;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      background: #e84375;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: #c73563;
+    }
+
+    .floating-heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.6);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .love-button {
+        font-size: 1rem;
+        padding: 14px 28px;
+      }
+
+      .card {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>I made something for you</h1>
+
+    <button class="love-button" onclick="openCard()">
+      Touch Me ❤️
+    </button>
+
+    <div class="card" id="loveCard">
+      <div class="heart">❤️</div>
+
+      <h2>My Love</h2>
+
+      <p>
+        I just wanted to remind you that you mean more to me than words can ever fully explain.
+        Your smile, your voice, your heart, and the way you make everything feel better,
+        all of it stays with me every single day.
+      </p>
+
+      <p>
+        No matter how low you feel, please remember that you are loved deeply,
+        missed constantly, and thought about more than you know.
+        You are my peace, my favorite person, and one of the most beautiful parts of my life.
+      </p>
+
+      <div class="signature">
+        Forever yours ❤️
+      </div>
+
+      <button class="close-btn" onclick="closeCard()">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function openCard() {
+      const card = document.getElementById("loveCard");
+      card.classList.add("show");
+    }
+
+    function closeCard() {
+      const card = document.getElementById("loveCard");
+      card.classList.remove("show");
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.innerHTML = "❤️";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      heart.style.fontSize = Math.random() * 18 + 16 + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 700);
+  </script>
+
+</body>
+</html>
