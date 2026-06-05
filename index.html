@@ -29,13 +29,6 @@
       z-index: 2;
     }
 
-    h1 {
-      color: #fff;
-      font-size: 2.2rem;
-      margin-bottom: 25px;
-      text-shadow: 0 4px 16px rgba(255, 105, 180, 0.4);
-    }
-
     .love-button {
       background: #ff4f8b;
       color: #fff;
@@ -57,18 +50,20 @@
     }
 
     .card {
-      margin-top: 35px;
-      width: 360px;
+      margin-top: 30px;
+      width: 420px;
       max-width: 100%;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       border-radius: 24px;
       padding: 30px 25px;
-      box-shadow: 0 20px 60px rgba(255, 79, 139, 0.35);
+      box-shadow: 0 20px 60px rgba(255, 79, 139, 0.25);
       transform: scale(0);
       opacity: 0;
       transition: 0.5s ease;
       position: relative;
-      border: 1px solid rgba(255, 79, 139, 0.35);
+      border: 1px solid rgba(255, 79, 139, 0.25);
+      max-height: 75vh;
+      overflow-y: auto;
     }
 
     .card.show {
@@ -76,27 +71,25 @@
       opacity: 1;
     }
 
-    .card h2 {
-      color: #e84375;
-      margin-bottom: 15px;
-      font-size: 1.7rem;
-    }
-
-    .card p {
+    .message p {
       color: #444;
       font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+      text-align: left;
     }
 
     .signature {
       color: #e84375;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1.05rem;
+      margin-top: 10px;
+      text-align: left;
+      line-height: 1.8;
     }
 
     .close-btn {
-      margin-top: 15px;
+      margin-top: 18px;
       background: #e84375;
       color: white;
       border: none;
@@ -117,6 +110,7 @@
       font-size: 24px;
       animation: floatUp 6s linear infinite;
       z-index: 1;
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -133,18 +127,79 @@
       }
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.7rem;
-      }
+    .photo-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+      padding: 20px;
+    }
 
+    .photo-popup.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .photo-box {
+      position: relative;
+      max-width: 380px;
+      width: 100%;
+      animation: popIn 0.5s ease;
+    }
+
+    .photo-box img {
+      width: 100%;
+      border-radius: 22px;
+      border: 4px solid #fff;
+      box-shadow: 0 15px 40px rgba(255, 79, 139, 0.35);
+      display: block;
+    }
+
+    .photo-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      background: #ff4f8b;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 79, 139, 0.35);
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
       .love-button {
         font-size: 1rem;
         padding: 14px 30px;
       }
 
       .card {
-        padding: 25px 20px;
+        width: 100%;
+        padding: 22px 18px;
+      }
+
+      .message p {
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -153,29 +208,30 @@
 <body>
 
   <div class="container">
-    <h1>I made something for you</h1>
-
     <button class="love-button" onclick="openCard()">
       Rawrrr
     </button>
 
     <div class="card" id="loveCard">
-      <h2>My Love</h2>
+      <div class="message">
+        <p><strong>Happy birthday hon❤️</strong><br>
+        OH wait…..your not my hon anymore😝</p>
 
-      <p>
-        I just wanted to remind you that you mean more to me than words can ever fully explain.
-        Your smile, your voice, your heart, and the way you make everything feel better,
-        all of it stays with me every single day.
-      </p>
+        <p>Anyways, I hope you have an amazing birthday. I hope your days filled with good food, Laughter and terrible jokes.</p>
 
-      <p>
-        No matter how low you feel, please remember that you are loved deeply,
-        missed constantly, and thought about more than you know.
-        You are my peace, my favorite person, and one of the most beautiful parts of my life.
-      </p>
+        <p>I promise you, this year and so, will be the best years of your life. May all your wishes and dreams come true(except the ones that involve getting rid of me🙂‍↕️😜). You’re an absolute angel , ik I’m not there yet in terms of understanding you better, but I’m catching up. I’d say I’m blessed to have you.</p>
 
-      <div class="signature">
-        Forever yours ❤️
+        <p>Loving you was just so natural and no girls ever made me feel the way you made me feel. Sometimes I look at you and think how can someone be so beautiful. Wish I could call you mine and I wish you knew I’d take care of you and support you in ways you wouldn’t even imagine.</p>
+
+        <p>Now go out there, have funnn, eat lots of cake and yes don’t be grumpy hon, if people keep wishing you happy birthday 🤪😚</p>
+
+        <p>I hope my "I miss you" is actually felt by you and I really wish I was there! Would’ve made your day even special.</p>
+
+        <div class="signature">
+          Take care😘<br><br>
+          Love,<br>
+          Savyo
+        </div>
       </div>
 
       <button class="close-btn" onclick="closeCard()">
@@ -184,15 +240,35 @@
     </div>
   </div>
 
+  <div class="photo-popup" id="photoPopup">
+    <div class="photo-box">
+      <button class="photo-close" onclick="closePhoto()">×</button>
+      <img src="birthday-pic.jpg" alt="Special memory">
+    </div>
+  </div>
+
   <script>
+    let photoTimer;
+
     function openCard() {
       const card = document.getElementById("loveCard");
       card.classList.add("show");
+
+      clearTimeout(photoTimer);
+      photoTimer = setTimeout(() => {
+        document.getElementById("photoPopup").classList.add("show");
+      }, 2500);
     }
 
     function closeCard() {
       const card = document.getElementById("loveCard");
       card.classList.remove("show");
+      closePhoto();
+      clearTimeout(photoTimer);
+    }
+
+    function closePhoto() {
+      document.getElementById("photoPopup").classList.remove("show");
     }
 
     function createHeart() {
@@ -216,4 +292,3 @@
 
 </body>
 </html>
-
