@@ -15,129 +15,198 @@
 
     body {
       min-height: 100vh;
+      overflow: hidden;
+      background: #050505;
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #000;
-      overflow: hidden;
+      position: relative;
       padding: 20px;
     }
 
-    .container {
-      text-align: center;
-      position: relative;
-      z-index: 2;
+    .bg-glow,
+    .bg-glow2,
+    .bg-glow3 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: floatGlow 10s ease-in-out infinite;
     }
 
-    .love-button {
+    .bg-glow {
+      width: 300px;
+      height: 300px;
       background: #ff4f8b;
-      color: #fff;
-      border: none;
-      padding: 16px 38px;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(255, 79, 139, 0.45);
-      transition: 0.3s ease;
-      font-weight: 700;
-      letter-spacing: 1px;
+      top: 10%;
+      left: 8%;
     }
 
-    .love-button:hover {
-      transform: scale(1.08);
-      background: #fff;
-      color: #ff4f8b;
+    .bg-glow2 {
+      width: 280px;
+      height: 280px;
+      background: #8f5cff;
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .bg-glow3 {
+      width: 220px;
+      height: 220px;
+      background: #ff9ac2;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 4s;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+      }
+      50% {
+        transform: translateY(-20px) scale(1.08);
+      }
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .open-btn {
+      background: linear-gradient(135deg, #ff4f8b, #ff7eb3);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 0 25px rgba(255, 79, 139, 0.45);
+      transition: 0.35s ease;
+      animation: pulseBtn 2.2s infinite;
+    }
+
+    .open-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 35px rgba(255, 79, 139, 0.7);
+    }
+
+    @keyframes pulseBtn {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 18px rgba(255, 79, 139, 0.35);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 79, 139, 0.65);
+      }
     }
 
     .card {
-      margin-top: 30px;
-      width: 420px;
-      max-width: 100%;
-      background: rgba(255, 255, 255, 0.97);
-      border-radius: 24px;
-      padding: 30px 25px;
-      box-shadow: 0 20px 60px rgba(255, 79, 139, 0.25);
-      transform: scale(0);
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 26px 22px;
+      box-shadow: 0 20px 70px rgba(255, 79, 139, 0.18);
       opacity: 0;
-      transition: 0.5s ease;
-      position: relative;
-      border: 1px solid rgba(255, 79, 139, 0.25);
-      max-height: 75vh;
+      transform: translateY(50px) scale(0.96);
+      pointer-events: none;
+      transition: all 0.7s ease;
+      max-height: 76vh;
       overflow-y: auto;
+      text-align: left;
     }
 
     .card.show {
-      transform: scale(1);
       opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
     }
 
-    .message p {
-      color: #444;
+    .message-line {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.7s ease;
+      color: #fff;
+      line-height: 1.9;
       font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 18px;
-      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .message-line.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message-line strong {
+      color: #ff7eb3;
+      font-size: 1.05rem;
     }
 
     .signature {
-      color: #e84375;
+      color: #ff9ac2;
       font-weight: 700;
-      font-size: 1.05rem;
-      margin-top: 10px;
-      text-align: left;
-      line-height: 1.8;
     }
 
     .close-btn {
-      margin-top: 18px;
-      background: #e84375;
+      margin-top: 12px;
+      background: rgba(255,255,255,0.12);
       color: white;
-      border: none;
+      border: 1px solid rgba(255,255,255,0.2);
       padding: 10px 22px;
-      border-radius: 25px;
+      border-radius: 999px;
       cursor: pointer;
-      font-size: 0.95rem;
       transition: 0.3s ease;
+      display: inline-block;
     }
 
     .close-btn:hover {
-      background: #c73563;
-    }
-
-    .floating-heart {
-      position: absolute;
-      color: rgba(255, 79, 139, 0.75);
-      font-size: 24px;
-      animation: floatUp 6s linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0.6);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.3);
-        opacity: 0;
-      }
+      background: rgba(255,255,255,0.2);
     }
 
     .photo-popup {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0,0,0,0.82);
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 999;
       opacity: 0;
       pointer-events: none;
-      transition: 0.4s ease;
+      transition: 0.45s ease;
+      z-index: 10;
       padding: 20px;
     }
 
@@ -147,147 +216,226 @@
     }
 
     .photo-box {
-      position: relative;
-      max-width: 380px;
       width: 100%;
-      animation: popIn 0.5s ease;
+      max-width: 400px;
+      transform: scale(0.75) rotate(-3deg);
+      transition: 0.45s ease;
+      position: relative;
+    }
+
+    .photo-popup.show .photo-box {
+      transform: scale(1) rotate(0deg);
     }
 
     .photo-box img {
       width: 100%;
-      border-radius: 22px;
-      border: 4px solid #fff;
-      box-shadow: 0 15px 40px rgba(255, 79, 139, 0.35);
       display: block;
+      border-radius: 24px;
+      border: 4px solid rgba(255,255,255,0.9);
+      box-shadow: 0 20px 60px rgba(255, 79, 139, 0.28);
+    }
+
+    .photo-caption {
+      margin-top: 14px;
+      text-align: center;
+      color: #ffd7e8;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
     }
 
     .photo-close {
       position: absolute;
-      top: -14px;
-      right: -14px;
-      width: 36px;
-      height: 36px;
-      border: none;
+      top: -12px;
+      right: -12px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
+      border: none;
       background: #ff4f8b;
-      color: #fff;
+      color: white;
       font-size: 18px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255, 79, 139, 0.35);
+      box-shadow: 0 8px 24px rgba(255,79,139,0.45);
     }
 
-    @keyframes popIn {
+    .floating-heart {
+      position: absolute;
+      font-size: 18px;
+      color: rgba(255, 120, 170, 0.8);
+      animation: floatHeart linear forwards;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes floatHeart {
       0% {
-        transform: scale(0.7);
+        transform: translateY(0) scale(0.8);
         opacity: 0;
       }
-      100% {
-        transform: scale(1);
+      10% {
         opacity: 1;
       }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .music-note {
+      position: absolute;
+      font-size: 18px;
+      color: rgba(255,255,255,0.75);
+      animation: floatHeart linear forwards;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hint {
+      margin-top: 14px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      letter-spacing: 0.4px;
     }
 
     @media (max-width: 480px) {
-      .love-button {
-        font-size: 1rem;
-        padding: 14px 30px;
-      }
-
       .card {
-        width: 100%;
         padding: 22px 18px;
       }
 
-      .message p {
+      .message-line {
         font-size: 0.95rem;
+      }
+
+      .open-btn {
+        padding: 14px 32px;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
-
 <body>
 
+  <div class="bg-glow"></div>
+  <div class="bg-glow2"></div>
+  <div class="bg-glow3"></div>
+
+  <div class="stars" id="stars"></div>
+
   <div class="container">
-    <button class="love-button" onclick="openCard()">
-      Rawrrr
-    </button>
+    <button class="open-btn" onclick="openCard()">Rawrrr</button>
+    <div class="hint">tap me slowly ❤️</div>
 
     <div class="card" id="loveCard">
-      <div class="message">
-        <p><strong>Happy birthday hon❤️</strong><br>
-        OH wait…..your not my hon anymore😝</p>
-
-        <p>Anyways, I hope you have an amazing birthday. I hope your days filled with good food, Laughter and terrible jokes.</p>
-
-        <p>I promise you, this year and so, will be the best years of your life. May all your wishes and dreams come true(except the ones that involve getting rid of me🙂‍↕️😜). You’re an absolute angel , ik I’m not there yet in terms of understanding you better, but I’m catching up. I’d say I’m blessed to have you.</p>
-
-        <p>Loving you was just so natural and no girls ever made me feel the way you made me feel. Sometimes I look at you and think how can someone be so beautiful. Wish I could call you mine and I wish you knew I’d take care of you and support you in ways you wouldn’t even imagine.</p>
-
-        <p>Now go out there, have funnn, eat lots of cake and yes don’t be grumpy hon, if people keep wishing you happy birthday 🤪😚</p>
-
-        <p>I hope my "I miss you" is actually felt by you and I really wish I was there! Would’ve made your day even special.</p>
-
-        <div class="signature">
-          Take care😘<br><br>
-          Love,<br>
-          Savyo
-        </div>
-      </div>
-
-      <button class="close-btn" onclick="closeCard()">
-        Close
-      </button>
+      <div id="messageContainer"></div>
+      <button class="close-btn" onclick="closeCard()">Close</button>
     </div>
   </div>
 
   <div class="photo-popup" id="photoPopup">
     <div class="photo-box">
       <button class="photo-close" onclick="closePhoto()">×</button>
-      <img src="birthday-pic.jpg.jpeg" alt="Special memory">
+      <img src="birthday-pic.jpg" alt="Special memory">
+      <div class="photo-caption">my favorite memory of us ✨</div>
     </div>
   </div>
 
   <script>
-    let photoTimer;
+    const lines = [
+      '<strong>Happy birthday hon❤️</strong><br>OH wait…..your not my hon anymore😝',
+      'Anyways, I hope you have an amazing birthday. I hope your days filled with good food, laughter and terrible jokes.',
+      'I promise you, this year and so, will be the best years of your life. May all your wishes and dreams come true (except the ones that involve getting rid of me🙂‍↕️😜). You’re an absolute angel, ik I’m not there yet in terms of understanding you better, but I’m catching up. I’d say I’m blessed to have you.',
+      'Loving you was just so natural and no girls ever made me feel the way you made me feel. Sometimes I look at you and think how can someone be so beautiful. Wish I could call you mine and I wish you knew I’d take care of you and support you in ways you wouldn’t even imagine.',
+      'Now go out there, have funnn, eat lots of cake and yes don’t be grumpy hon, if people keep wishing you happy birthday 🤪😚',
+      'I hope my "I miss you" is actually felt by you and I really wish I was there! Would’ve made your day even special.',
+      '<span class="signature">Take care😘<br><br>Love,<br>Savyo</span>'
+    ];
+
+    let revealTimeouts = [];
+    let photoTimeout;
 
     function openCard() {
       const card = document.getElementById("loveCard");
+      const container = document.getElementById("messageContainer");
+
+      container.innerHTML = '';
+      clearAllTimers();
+
       card.classList.add("show");
 
-      clearTimeout(photoTimer);
-      photoTimer = setTimeout(() => {
-        document.getElementById("photoPopup").classList.add("show");
-      }, 2500);
+      lines.forEach((line, index) => {
+        const p = document.createElement("div");
+        p.className = "message-line";
+        p.innerHTML = line;
+        container.appendChild(p);
+
+        const t = setTimeout(() => {
+          p.classList.add("show");
+          if (index === lines.length - 1) {
+            photoTimeout = setTimeout(() => {
+              document.getElementById("photoPopup").classList.add("show");
+            }, 1200);
+          }
+        }, index * 1400);
+
+        revealTimeouts.push(t);
+      });
+
+      burstHearts();
     }
 
     function closeCard() {
-      const card = document.getElementById("loveCard");
-      card.classList.remove("show");
+      clearAllTimers();
+      document.getElementById("loveCard").classList.remove("show");
+      document.getElementById("messageContainer").innerHTML = '';
       closePhoto();
-      clearTimeout(photoTimer);
     }
 
     function closePhoto() {
       document.getElementById("photoPopup").classList.remove("show");
     }
 
+    function clearAllTimers() {
+      revealTimeouts.forEach(t => clearTimeout(t));
+      revealTimeouts = [];
+      clearTimeout(photoTimeout);
+    }
+
+    function createStars() {
+      const stars = document.getElementById("stars");
+      for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        star.style.animationDuration = (2 + Math.random() * 3) + "s";
+        stars.appendChild(star);
+      }
+    }
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("floating-heart");
       heart.innerHTML = "❤️";
-
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-      heart.style.fontSize = Math.random() * 18 + 16 + "px";
-
+      heart.style.bottom = "-20px";
+      heart.style.fontSize = (14 + Math.random() * 16) + "px";
+      heart.style.animationDuration = (5 + Math.random() * 4) + "s";
       document.body.appendChild(heart);
 
       setTimeout(() => {
         heart.remove();
-      }, 7000);
+      }, 9000);
     }
 
-    setInterval(createHeart, 700);
+    function burstHearts() {
+      for (let i = 0; i < 12; i++) {
+        setTimeout(createHeart, i * 120);
+      }
+    }
+
+    setInterval(createHeart, 900);
+    createStars();
   </script>
 
 </body>
